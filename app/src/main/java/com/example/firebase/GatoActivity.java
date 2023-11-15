@@ -37,21 +37,27 @@ public class GatoActivity extends AppCompatActivity {
             binding.button.setEnabled(false);
             String nombre = binding.textFieldNombre.getEditText().getText().toString();
             String raza = binding.textFieldRaza.getEditText().getText().toString();
-            HashMap<String, Object> gatoMap = new HashMap<>();
-            gatoMap.put("nombre", nombre);
-            gatoMap.put("raza", raza);
-            gatoMap.put("timestamp", FieldValue.serverTimestamp());
-            db.collection("gatos").add(gatoMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(GatoActivity.this, "Gato guardado en firebase :D", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(GatoActivity.this, "Gato no guardado en firebase :c", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if(raza.isEmpty() && nombre.isEmpty()){
+                Toast.makeText(GatoActivity.this, "I use arch btw", Toast.LENGTH_SHORT).show();
+            }else{
+                HashMap<String, Object> gatoMap = new HashMap<>();
+                gatoMap.put("nombre", nombre);
+                gatoMap.put("raza", raza);
+                gatoMap.put("timestamp", FieldValue.serverTimestamp());
+                db.collection("gatos").add(gatoMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(GatoActivity.this, "Gato guardado en firebase :D", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(GatoActivity.this, "Gato no guardado en firebase :c", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            binding.textFieldRaza.getEditText().setText("");
+            binding.textFieldNombre.getEditText().setText("");
             binding.button.setEnabled(true);
         });
         binding.btnListarGatos.setOnClickListener(v -> {
@@ -78,6 +84,9 @@ public class GatoActivity extends AppCompatActivity {
                         }
                     });
             binding.btnListarGatos.setEnabled(true);
+        });
+        binding.floatingActionButton.setOnClickListener(v -> {
+            finish();
         });
     }
 }
