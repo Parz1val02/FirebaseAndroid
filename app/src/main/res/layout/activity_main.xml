@@ -143,5 +143,15 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fab_next_activity"
-        app:srcCompat="@drawable/arch_linux_logo" />
+        app:srcCompat="@drawable/baseline_lock_24" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+        app:srcCompat="@drawable/baseline_image_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -135,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         });
+        binding.imageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, StorageActivity.class);
+            startActivity(intent);
+        });
     }
     @Override
     protected void onPause() {
